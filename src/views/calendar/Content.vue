@@ -31,31 +31,15 @@ export default {
   },
 
   mounted () {
-    //this.calendar = this.$store.getters.calendar
-    // if(applyer == undefined){
-    //   aplayer = this.$refs.player.control
-    //   aplayer.play()
-    // }
+
     
   },
 
-  // beforeRouteEnter (to, from, next) {
-  //   next($this => $this.fetchList())
-  // },
+
 
   methods: {
     fetchList () {
-      // let day = this.$route.params.day
-      //   , isToday = day === 'today' ? true : false
 
-      // console.log(day)
-
-      // this.$store.dispatch('FETCH_INDEX').then(({calendar, days, today}) => {
-      //   this.$store.dispatch('FETCH_DAILY', { day: isToday ? today : day }).then(data => {
-      //     this.statuses = data.msgs;
-      //     this.isLoading = false
-      //   })
-      // })
     }
   }
 }

@@ -51,8 +51,6 @@ export default {
       let day = this.$route.params.day
         , isToday = day === 'today' ? true : false
 
-      console.log(day)
-
       this.$store.dispatch('FETCH_INDEX').then(({calendar, days, today}) => {
         this.$store.dispatch('FETCH_DAILY', { day: isToday ? today : day }).then(data => {
           this.statuses = data.msgs;

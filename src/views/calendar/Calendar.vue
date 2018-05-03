@@ -172,8 +172,7 @@ export default {
     },
 
     isToday: function (date) {
-      console.log("radioDate"+this.radioDate )
-      console.log("date"+date )
+
       return this.radioDate == date
     },
 

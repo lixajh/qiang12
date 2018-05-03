@@ -52,10 +52,6 @@ export default class Calendar {
         
       ].join('')
 
-      if ( s === '2017-09-03'){
-        console.log(todayString)
-      }
-
       calendar.days.push({
         value: _monthObj.includes(s) ? 'value' : 'empty',
         content: i + 1,

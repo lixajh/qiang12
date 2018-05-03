@@ -3,12 +3,14 @@ import App from './App'
 import router from '@/router'
 import store from '@/store'
 import { Loading } from 'element-ui';
-import VcPopupOver from 'vc-popup-over'
+import { Popup } from 'mint-ui'
+import Icon from 'vue-svg-icon/Icon.vue';
 
 Vue.config.productionTip = false
 // Vue.use(ElementUI)
 Vue.use(Loading.directive);
-Vue.use(VcPopupOver)
+Vue.component(Popup.name, Popup)
+Vue.component('icon', Icon); 
 Vue.prototype.$loading = Loading.service;
 
 new Vue({

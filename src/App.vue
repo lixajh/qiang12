@@ -2,8 +2,15 @@
   <div id="app">
     <div>
     <header class="header">
-      <h1>锵锵三人行·日历</h1> 
-      <!-- <div ref="btn16" @click="click4">popover(仿antd)</div> -->
+      <h1 style="display:inline-block">锵锵三人行·日历</h1> 
+      <div class="menu" @click="click4"> <icon name="menu" scale="2"></icon></div>
+      <!-- <mt-popup v-model="popupVisible" position="top" 
+ popup-transition="popup-fade" >
+  <h1>popup</h1>
+      <p>/ ˈpɑpˌʌp /</p>
+      <p>n. 弹出式; [棒]内野飞球; 自动起跳式装置</p>
+      <p>adj. 弹起的; 有自动起跳装置的</p>
+</mt-popup> -->
       <template v-if="songs">
        
           <a-player theme="#46C1FD" :music="songs"></a-player>
@@ -25,7 +32,7 @@ import Aplayer from 'vue-aplayer'
 
 
 var data = { 
-  
+ 
            }
 export default {
 
@@ -34,30 +41,15 @@ export default {
 
   
 mounted () {
-  this.Popover = new this.$popup.Popover({
-        refDom: this.$refs.btn16,
-        refCorner: 'bottom right',
-        relativeToCorner: 'below before',
-        propsData: {
-          items: [
-            {
-              name: '扫描',
-              click: e => console.log('btn0 clicked'),
-              src: 'https://gw.alipayobjects.com/zos/rmsportal/tOtXhkIWzwotgGSeptou.svg'
-            }, {
-              name: '二维码',
-              click: e => this.Popover.close(e),
-              src: 'https://gw.alipayobjects.com/zos/rmsportal/PKAgAqZWJVNwKsAJSmXd.svg'
-            }, {
-              name: '帮助',
-              click: e => this.Popover.close(e),
-              src: 'https://gw.alipayobjects.com/zos/rmsportal/uQIYTFeRrjPELImDRrPt.svg'
-            }
-          ]
-        }
-      })
+  
 }
 ,
+data(){
+  return {
+     popupVisible:false
+  }
+},
+
   computed: {
 
     ...mapGetters([
@@ -73,8 +65,8 @@ mounted () {
     
   },
   methods:{
- click4 (e) {
-        this.Popover.open(e)
+ click4 () {
+       this.popupVisible = true;
       }
   },
   components: {
@@ -210,6 +202,28 @@ body:before {
 }
 .fade-enter, .fade-leave-active {
   opacity: 0;
+}
+.menu{
+  float: right;
+  margin-right: 5px;
+  margin-top: 16px;
+}
+
+
+
+.mint-popup-1 {
+  background: white;
+  width: 200px;
+  border-radius: 8px;
+  padding: 10px;
+
+  h1 {
+    font-size: 20px;
+    color: #26a2ff;
+  }
+  p {
+    margin-bottom: 10px;
+  }
 }
 
 </style>
