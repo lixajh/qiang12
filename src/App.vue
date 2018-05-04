@@ -8,8 +8,9 @@
             <mu-icon-button ref="button" @click="toggle"> <icon name="menu" scale="2"></icon></mu-icon-button>
             <mu-popover :trigger="trigger" :open="open" @close="handleClose">
               <mu-menu>
-                <mu-menu-item title="关于作者" />
-                <mu-menu-item title="Help" />
+                <mu-menu-item title="关于作者" leftIcon="face"/>
+                 <!-- <mu-divider />
+                <mu-menu-item title="Help" /> -->
               </mu-menu>
             </mu-popover>
           </div>
@@ -50,7 +51,6 @@ export default {
   computed: {
     ...mapGetters([
       'songs'
-      
     ]),
     currentPage () {
       return this.$route.path
@@ -62,7 +62,7 @@ export default {
     toggle () {
       this.open = !this.open
     },
-    
+
     handleClose (e) {
       this.open = false
     }

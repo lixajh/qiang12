@@ -15,7 +15,6 @@
   "dependencies": {
     "axios": "0.17.1",
     "element-ui": "^2.3.7",
-    "hls.js": "^0.9.1",
     "qs": "^6.5.1",
     "vc-popup-over": "^0.1.16",
     "vue": "2.5.16",
