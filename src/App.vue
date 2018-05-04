@@ -1,22 +1,23 @@
 <template>
   <div id="app">
     <div>
-    <header class="header">
-      <h1 style="display:inline-block">锵锵三人行·日历</h1> 
-      <div class="menu" @click="click4"> <icon name="menu" scale="2"></icon></div>
-      <!-- <mt-popup v-model="popupVisible" position="top" 
- popup-transition="popup-fade" >
-  <h1>popup</h1>
-      <p>/ ˈpɑpˌʌp /</p>
-      <p>n. 弹出式; [棒]内野飞球; 自动起跳式装置</p>
-      <p>adj. 弹起的; 有自动起跳装置的</p>
-</mt-popup> -->
-      <template v-if="songs">
-       
+      <header class="header">
+        <div>
+          <h1 style="display:inline-block">锵锵三人行·日历</h1> 
+          <div class="menu">
+            <mu-icon-button ref="button" @click="toggle"> <icon name="menu" scale="2"></icon></mu-icon-button>
+            <mu-popover :trigger="trigger" :open="open" @close="handleClose">
+              <mu-menu>
+                <mu-menu-item title="关于作者" />
+                <mu-menu-item title="Help" />
+              </mu-menu>
+            </mu-popover>
+          </div>
+        </div>
+        <template v-if="songs">
           <a-player theme="#46C1FD" :music="songs"></a-player>
-        
-      </template>
-    </header>
+        </template>
+      </header>
     </div>
     <main class="content">
       <transition name="fade" mode="out-in">
@@ -31,69 +32,46 @@ import { mapGetters } from 'vuex'
 import Aplayer from 'vue-aplayer'
 
 
-var data = { 
- 
-           }
 export default {
 
-  
   name: 'app',
 
-  
-mounted () {
-  
-}
-,
-data(){
-  return {
-     popupVisible:false
-  }
-},
+  data(){
+    return {
+      open: false,
+        trigger: null
+    }
+  },
+
+  mounted () {
+    this.trigger = this.$refs.button.$el
+  },
 
   computed: {
-
     ...mapGetters([
       'songs'
-     
+      
     ]),
-
     currentPage () {
       return this.$route.path
-    },
+    },   
+  },
 
-   
-    
-  },
   methods:{
- click4 () {
-       this.popupVisible = true;
-      }
+
+    toggle () {
+      this.open = !this.open
+    },
+    
+    handleClose (e) {
+      this.open = false
+    }
   },
+
   components: {
       'a-player': Aplayer
   },
- 
-   beforeMount () {
-    //  this.$store.commit('SET_RADIO_DATE', '2017-12-12')
-
-  },
-  watch:{
-    songs:function(after,before){
-      
-      // data.csongdate = this.$store.state.radioDate
-  //   if(data.useone){
-      // if(before === null){
-      //   return
-      // }
-      
-     
-     
-    }}
-    ,
-
-
-  }
-
+}
 </script>
 
 <style lang="scss">
@@ -139,7 +117,7 @@ a {
   position: relative;
 }
 .header {
-  z-index: 100;
+  z-index: 1;
   width: 100%;
   height: 130px;
   background: #46C1FD;
@@ -149,8 +127,8 @@ a {
   left: 0;
   top: 0;
 }
-.header > h1 {
-  height: 40px;
+.header > div > h1 {
+  height: 25px;
   box-sizing: border-box;
   padding: .65rem 0 0 0;
   font-size: 1.425rem;
@@ -204,26 +182,11 @@ body:before {
   opacity: 0;
 }
 .menu{
+  margin-top: 17px;
+  height: 15px;
+  width: 30px;
   float: right;
   margin-right: 5px;
-  margin-top: 16px;
-}
-
-
-
-.mint-popup-1 {
-  background: white;
-  width: 200px;
-  border-radius: 8px;
-  padding: 10px;
-
-  h1 {
-    font-size: 20px;
-    color: #26a2ff;
-  }
-  p {
-    margin-bottom: 10px;
-  }
 }
 
 </style>
