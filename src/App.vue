@@ -5,10 +5,10 @@
         <div>
           <h1 style="display:inline-block">锵锵三人行·日历</h1> 
           <div class="menu">
-            <mu-icon-button ref="button" @click="toggle"> <icon name="menu" scale="2"></icon></mu-icon-button>
-            <mu-popover :trigger="trigger" :open="open" @close="handleClose">
+            <mu-icon-button ref="menuBtn" @click="menuToggle"> <icon name="menu" scale="2"></icon></mu-icon-button>
+            <mu-popover :trigger="menuTrigger" :open="menuOpen" @close="handleClose">
               <mu-menu>
-                <mu-menu-item title="关于作者" leftIcon="face"/>
+                <mu-menu-item @click="autherSaysClick" title="作者的话" leftIcon="face"/>
                  <!-- <mu-divider />
                 <mu-menu-item title="Help" /> -->
               </mu-menu>
@@ -25,7 +25,19 @@
         <router-view ></router-view>
       </transition>
     </main>
-  </div>
+
+    <mu-dialog :open="autherSaysShow" title="作者的话" @close="autherSaysClose">
+   <div>我是2010年才开始的锵锵观众，算不上老资格。之后陆陆续续听了能找到的05年以来的所有节目，觉得听旧闻比听新闻有趣多了。
+     去年九月锵锵停播，做了这个小站，每天晚上11点更新12年前的当天节目，这样又可以更新12年了。</div>
+    <div>节目的资源是这些年大家分享的，整理的过程中发现有些节目时长不够，也有不同人收集的资源同一天的音频内容不一样的，大家在收听过程中发现错漏可以发邮件联系我，我会尽快更正。
+      大家有什么建议和意见也请给我发邮件。因为像文涛一样抠门，整个项目成本不到一百块，网站访问速度常常不稳定，我是不会升级的(捂脸哭）。</div>
+      <div>最后感谢文涛，文道，子东，家辉，马爷，王蒙老爷子，査老师，轶君，幼婷等锵锵历年来的嘉宾和刘长乐等诸位老板和节目组的各位工作人员。重塑三观，谢谢你们！</div>
+      <br>
+      <div style="float:right" ><strong>lixajh@gmail.com</strong></div>
+      <mu-flat-button slot="actions" primary @click="autherSaysClose" label="确定"/>
+  </mu-dialog>
+
+  </div> 
 </template>
 
 <script>
@@ -39,13 +51,14 @@ export default {
 
   data(){
     return {
-      open: false,
-        trigger: null
+        menuOpen: false,
+        menuTrigger: null,
+        autherSaysShow:false
     }
   },
 
   mounted () {
-    this.trigger = this.$refs.button.$el
+    this.menuTrigger = this.$refs.menuBtn.$el
   },
 
   computed: {
@@ -53,18 +66,25 @@ export default {
       'songs'
     ]),
     currentPage () {
-      return this.$route.path
+      return this.$route.path;
     },   
   },
 
   methods:{
 
-    toggle () {
-      this.open = !this.open
+    menuToggle () {
+      this.menuOpen = !this.menuOpen;
     },
 
     handleClose (e) {
-      this.open = false
+      this.menuOpen = false;
+    },
+    autherSaysClick(){
+      this.menuOpen = false;
+        this.autherSaysShow = true;
+    },
+    autherSaysClose(){
+        this.autherSaysShow = false;
     }
   },
 
@@ -130,7 +150,6 @@ a {
 .header > div > h1 {
   height: 25px;
   box-sizing: border-box;
-  padding: .65rem 0 0 0;
   font-size: 1.425rem;
 }
 nav.inner {
@@ -182,11 +201,21 @@ body:before {
   opacity: 0;
 }
 .menu{
-  margin-top: 17px;
+  margin-top: 8px;
   height: 15px;
   width: 30px;
   float: right;
   margin-right: 5px;
+}
+
+.mu-menu-list {
+    padding:  0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 </style>
