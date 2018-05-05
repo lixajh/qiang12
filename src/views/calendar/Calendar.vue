@@ -153,8 +153,8 @@ export default {
         data.calendarLoading=false
          let m_song1s =      
         {
-          title: '锵锵三人行         ' + clickDate ,
-          artist: "窦文涛 梁文道 许子东",      
+          title: '锵锵三人行' + clickDate ,
+          artist: "窦文涛",      
           src: content.data.audio,
           pic: 'https://tva4.sinaimg.cn/crop.0.0.180.180.180/645ed684jw1e8qgp5bmzyj2050050aa8.jpg'
         }  

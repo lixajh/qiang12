@@ -18,7 +18,6 @@
     "qs": "^6.5.1",
     "vc-popup-over": "^0.1.16",
     "vue": "2.5.16",
-    "vue-aplayer": "^1.5.1",
     "vue-dateutils": "^1.0.8",
     "muse-ui": "^2.1.0",
     "vue-infinite-loading": "^2.2.3",
